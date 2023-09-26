@@ -14,29 +14,7 @@ data class AyahResponse(
 	val status: String
 )
 
-data class Data(
 
-	@field:SerializedName("number")
-	val number: Int,
-
-	@field:SerializedName("englishName")
-	val englishName: String,
-
-	@field:SerializedName("numberOfAyahs")
-	val numberOfAyahs: Int,
-
-	@field:SerializedName("revelationType")
-	val revelationType: String,
-
-	@field:SerializedName("name")
-	val name: String,
-
-	@field:SerializedName("ayahs")
-	val ayahs: List<AyahsItem>,
-
-	@field:SerializedName("englishNameTranslation")
-	val englishNameTranslation: String
-)
 
 data class AyahsItem(
 
@@ -47,6 +25,9 @@ data class AyahsItem(
 	val text: String?,
 
 	@SerializedName("numberInSurah")
-	var verseNumber: Int?
+	var verseNumber: Int?,
+
+	@field:SerializedName("juz")
+	val juz: Int
 )
 

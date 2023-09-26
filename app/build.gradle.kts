@@ -67,4 +67,6 @@ dependencies {
     implementation ("androidx.navigation:navigation-ui-ktx:2.6.0")
     implementation ("com.github.bumptech.glide:glide:4.13.1")
     implementation ("de.hdodenhof:circleimageview:3.1.0")
+
+    implementation ("com.github.kirich1409:viewbindingpropertydelegate:1.5.3")
 }

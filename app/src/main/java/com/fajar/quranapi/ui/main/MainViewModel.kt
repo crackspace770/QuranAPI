@@ -11,7 +11,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class MainViewModel : ViewModel() {
+class MainViewModel: ViewModel() {
 
     private val _listSurah = MutableLiveData<ArrayList<SurahResponse>>()
     val listSurah: LiveData<ArrayList<SurahResponse>> = _listSurah
@@ -50,7 +50,7 @@ class MainViewModel : ViewModel() {
             }
 
             override fun onFailure(call: Call<ListSurahResponse>, t: Throwable) {
-                Log.d(TAG, "onFailur: ${t.message}")
+                Log.d(TAG, "onFailure: ${t.message}")
                 // Update isLoading to false when the operation is complete (even in case of failure)
                 _isLoading.value = false
             }
