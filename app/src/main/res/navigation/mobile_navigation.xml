@@ -7,16 +7,16 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.fajar.quranapi.ui.surah.SurahFragment"
+        android:name="com.fajar.quranapi.ui.quran.QuranFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_surah">
+        tools:layout="@layout/fragment_quran">
     </fragment>
 
     <fragment
-        android:id="@+id/nav_juz"
-        android:name="com.fajar.quranapi.ui.juz.JuzFragment"
+        android:id="@+id/nav_bookmark"
+        android:name="com.fajar.quranapi.ui.quran.bookmark.BookmarkFragment"
         android:label="fragment_bookmark"
-        tools:layout="@layout/fragment_juz">
+        tools:layout="@layout/fragment_bookmark">
     </fragment>
 
 </navigation>

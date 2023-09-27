@@ -4,11 +4,11 @@
     <item
         android:id="@+id/nav_home"
         android:icon="@drawable/baseline_home_24"
-        android:title="@string/title_surah" />
+        android:title="@string/title_quran" />
 
     <item
-        android:id="@+id/nav_juz"
+        android:id="@+id/nav_bookmark"
         android:icon="@drawable/baseline_book_24"
-        android:title="@string/title_juz" />
+        android:title="@string/title_bookmark" />
 
 </menu>

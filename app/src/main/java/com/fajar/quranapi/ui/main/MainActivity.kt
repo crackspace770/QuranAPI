@@ -12,8 +12,10 @@ import androidx.navigation.ui.setupWithNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.fajar.quranapi.R
 import com.fajar.quranapi.databinding.ActivityMainBinding
-import com.fajar.quranapi.ui.juz.JuzFragment
-import com.fajar.quranapi.ui.surah.SurahFragment
+import com.fajar.quranapi.ui.quran.QuranFragment
+import com.fajar.quranapi.ui.quran.bookmark.BookmarkFragment
+import com.fajar.quranapi.ui.quran.juz.JuzFragment
+import com.fajar.quranapi.ui.quran.surah.SurahFragment
 
 class MainActivity:AppCompatActivity(R.layout.activity_main) {
 
@@ -31,14 +33,14 @@ class MainActivity:AppCompatActivity(R.layout.activity_main) {
     }
 
     private fun setupBottomNavMenu(navController: NavController) {
-        setFragment(SurahFragment())
+        setFragment(QuranFragment())
         val bottomNav = binding.navView
         bottomNav.setupWithNavController(navController)
         bottomNav.setOnItemSelectedListener {
             when (it.itemId) {
-                R.id.nav_home -> setFragment(SurahFragment())
-                R.id.nav_juz -> setFragment(JuzFragment())
-                else -> setFragment(SurahFragment())
+                R.id.nav_home -> setFragment(QuranFragment())
+                R.id.nav_bookmark -> setFragment(BookmarkFragment())
+                else -> setFragment(QuranFragment())
             }
             return@setOnItemSelectedListener true
         }

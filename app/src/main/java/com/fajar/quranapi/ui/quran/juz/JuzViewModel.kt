@@ -1,4 +1,4 @@
-package com.fajar.quranapi.ui.juz
+package com.fajar.quranapi.ui.quran.juz
 
 
 import androidx.lifecycle.LiveData
@@ -26,10 +26,8 @@ class JuzViewModel: ViewModel() {
     private fun fetchAllJuzItems() {
         _isLoading.value = true
         val apiService = ApiConfig.provideApiService()
-
         // Create an empty list to store all Juz items
         val allJuzItems = mutableListOf<JuzItem>()
-
         // Fetch each Juz item one by one and add it to the list
         for (juzNumber in 1..30) { // Assuming you want to fetch all 30 Juz
             apiService.getJuz(juzNumber)

@@ -1,4 +1,4 @@
-package com.fajar.quranapi.ui.surah
+package com.fajar.quranapi.ui.quran.surah
 
 import android.content.Intent
 import android.os.Bundle
@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.fajar.quranapi.ui.adapter.SurahAdapter
 import com.fajar.quranapi.databinding.FragmentSurahBinding
-import com.fajar.quranapi.ui.detail.DetailActivity
+import com.fajar.quranapi.ui.quran.detail.DetailActivity
 
 class SurahFragment : Fragment() {
 

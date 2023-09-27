@@ -2,6 +2,7 @@
     <string name="app_name">QuranAPI</string>
     <string name="verse">لْحَمْدُ لِلَّهِ رَبِّ ٱلْعَٰلَمِينَ</string>
 
+    <string name="title_quran">Quran</string>
     <string name="title_surah">Surah</string>
     <string name="title_juz">Juz</string>
     <string name="title_bookmark">Bookmark</string>

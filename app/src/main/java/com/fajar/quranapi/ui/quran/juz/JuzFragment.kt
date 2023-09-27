@@ -1,4 +1,4 @@
-package com.fajar.quranapi.ui.juz
+package com.fajar.quranapi.ui.quran.juz
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -40,6 +40,14 @@ class JuzFragment : Fragment() {
         viewModel.juzList.observe(viewLifecycleOwner) { juzList ->
             juzAdapter.submitList(juzList)
         }
+
+        viewModel.isLoading.observe(viewLifecycleOwner){isLoading->
+            showLoading(isLoading)
+        }
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
 
     override fun onDestroyView() {

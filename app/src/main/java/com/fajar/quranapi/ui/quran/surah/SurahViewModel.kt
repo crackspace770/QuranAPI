@@ -1,4 +1,4 @@
-package com.fajar.quranapi.ui.surah
+package com.fajar.quranapi.ui.quran.surah
 
 import android.util.Log
 import androidx.lifecycle.LiveData

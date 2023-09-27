@@ -1,4 +1,4 @@
-package com.fajar.quranapi.ui.detail
+package com.fajar.quranapi.ui.quran.detail
 
 import android.os.Bundle
 import android.view.View

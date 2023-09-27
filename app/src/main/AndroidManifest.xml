@@ -23,7 +23,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ui.detail.DetailActivity"
+        <activity android:name=".ui.quran.detail.DetailActivity"
             android:exported="false"
             />
 
