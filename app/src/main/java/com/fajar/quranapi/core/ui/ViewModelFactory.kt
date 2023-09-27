@@ -3,7 +3,7 @@ package com.fajar.quranapi.core.ui
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.fajar.quranapi.ui.list.JuzViewModel
+import com.fajar.quranapi.ui.juz.JuzViewModel
 
 class ViewModelFactory constructor(private val application: Application):
 ViewModelProvider.NewInstanceFactory(){

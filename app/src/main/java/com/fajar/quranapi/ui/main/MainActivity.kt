@@ -1,63 +1,60 @@
 package com.fajar.quranapi.ui.main
 
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+import android.annotation.SuppressLint
 import android.os.Bundle
-import android.view.View
-import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.fajar.quranapi.ui.adapter.SurahAdapter
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupWithNavController
+import by.kirich1409.viewbindingdelegate.viewBinding
+import com.fajar.quranapi.R
 import com.fajar.quranapi.databinding.ActivityMainBinding
-import com.fajar.quranapi.core.response.SurahResponse
-import com.fajar.quranapi.ui.detail.DetailActivity
+import com.fajar.quranapi.ui.juz.JuzFragment
+import com.fajar.quranapi.ui.surah.SurahFragment
 
-class MainActivity : AppCompatActivity() {
+class MainActivity:AppCompatActivity(R.layout.activity_main) {
 
-    private lateinit var binding: ActivityMainBinding
+    private val binding: ActivityMainBinding by viewBinding()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
 
-        val mainViewModel = ViewModelProvider(
-            this,
-            ViewModelProvider.NewInstanceFactory()
-        )[MainViewModel::class.java]
-
-        val layoutManager = LinearLayoutManager(this)
-        binding.rvSurah.layoutManager = layoutManager
-        val itemDecoration = DividerItemDecoration(this, layoutManager.orientation)
-        binding.rvSurah.addItemDecoration(itemDecoration)
-
-        mainViewModel.listSurah.observe(this) { surahList ->
-            setSurahData(surahList)
+        binding.apply {
+            val navHostFragment =
+                supportFragmentManager.findFragmentById(R.id.main_fragment) as NavHostFragment
+            val navController = navHostFragment.navController
+            setupBottomNavMenu(navController)
         }
-
-        mainViewModel.isLoading.observe(this) {
-            showLoading(it)
-        }
-
-
     }
 
-    private fun setSurahData(surahList: ArrayList<SurahResponse>) {
-
-        val adapter = SurahAdapter()
-        adapter.submitList(surahList)
-        binding.rvSurah.adapter = adapter
-
-        adapter.onItemClick = { surah ->
-            val intent = Intent(this@MainActivity, DetailActivity::class.java)
-            intent.putExtra("surahNum", surah.number) // Pass the surah number
-            startActivity(intent)
+    private fun setupBottomNavMenu(navController: NavController) {
+        setFragment(SurahFragment())
+        val bottomNav = binding.navView
+        bottomNav.setupWithNavController(navController)
+        bottomNav.setOnItemSelectedListener {
+            when (it.itemId) {
+                R.id.nav_home -> setFragment(SurahFragment())
+                R.id.nav_juz -> setFragment(JuzFragment())
+                else -> setFragment(SurahFragment())
+            }
+            return@setOnItemSelectedListener true
         }
-
     }
 
-    private fun showLoading(isLoading: Boolean) {
-        binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
+    private fun FragmentManager.instantiate(className: String): Fragment {
+        return fragmentFactory.instantiate(ClassLoader.getSystemClassLoader(), className)
+    }
+
+    @SuppressLint("CommitTransaction")
+    private fun setFragment(fragment: Fragment) {
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.main_fragment, fragment)
+            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+            .commit()
     }
 
 }

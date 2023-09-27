@@ -7,8 +7,8 @@
         android:title="@string/title_surah" />
 
     <item
-        android:id="@+id/nav_bookmark"
+        android:id="@+id/nav_juz"
         android:icon="@drawable/baseline_book_24"
-        android:title="@string/title_bookmark" />
+        android:title="@string/title_juz" />
 
 </menu>

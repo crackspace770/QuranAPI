@@ -1,4 +1,4 @@
-package com.fajar.quranapi.ui.main
+package com.fajar.quranapi.ui.surah
 
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -11,7 +11,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class MainViewModel: ViewModel() {
+class SurahViewModel: ViewModel() {
 
     private val _listSurah = MutableLiveData<ArrayList<SurahResponse>>()
     val listSurah: LiveData<ArrayList<SurahResponse>> = _listSurah

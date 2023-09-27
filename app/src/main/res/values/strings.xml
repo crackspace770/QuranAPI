@@ -3,6 +3,7 @@
     <string name="verse">لْحَمْدُ لِلَّهِ رَبِّ ٱلْعَٰلَمِينَ</string>
 
     <string name="title_surah">Surah</string>
+    <string name="title_juz">Juz</string>
     <string name="title_bookmark">Bookmark</string>
     <string name="something_wrong">Oops.. something went wrong</string>
 </resources>

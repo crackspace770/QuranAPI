@@ -1,4 +1,4 @@
-package com.fajar.quranapi.ui.list
+package com.fajar.quranapi.ui.juz
 
 
 import androidx.lifecycle.LiveData
