@@ -16,18 +16,4 @@ data class AyahResponse(
 
 
 
-data class AyahsItem(
-
-	@SerializedName("audio")
-	val audio: String?,
-
-	@SerializedName("text")
-	val text: String?,
-
-	@SerializedName("numberInSurah")
-	var verseNumber: Int?,
-
-	@field:SerializedName("juz")
-	val juz: Int
-)
 

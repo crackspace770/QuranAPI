@@ -40,7 +40,7 @@
         <TextView
             android:id="@+id/tvVerse"
             android:layout_width="228dp"
-            android:layout_height="32dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             android:fontFamily="@raw/islamic_arabic"
@@ -48,6 +48,16 @@
             android:textSize="22sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvTerjemahan"
+            android:layout_width="231dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:text="(Inilah) Kitab yang diturunkan kepadamu (Muhammad); maka janganlah engkau sesak dada karenanya, agar engkau memberi peringatan dengan (Kitab) itu dan menjadi pelajaran bagi orang yang beriman."
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvVerse" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

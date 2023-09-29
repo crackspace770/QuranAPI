@@ -23,8 +23,9 @@ class VerseAdapter : RecyclerView.Adapter<VerseAdapter.VerseViewHolder>() {
 
         fun bind(verseItem: AyahsItem) {
             with(binding) {
-                tvNumber.text = verseItem.verseNumber?.toString() ?: ""
-                tvVerse.text = verseItem.text ?: ""
+                tvNumber.text = verseItem.number.inSurah.toString() ?: ""
+                tvVerse.text = verseItem.arab ?: ""
+                tvTerjemahan.text = verseItem.translation
             }
         }
     }

@@ -19,6 +19,15 @@ class ApiConfig {
 
             fun provideApiService(): ApiService {
                 val retrofit = Retrofit.Builder()
+                    .baseUrl("https://quran-api-id.vercel.app/")
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .client(provideOkHttpClient())
+                    .build()
+                return retrofit.create(ApiService::class.java)
+            }
+
+            fun provideJuzApiService():ApiService{
+                val retrofit = Retrofit.Builder()
                     .baseUrl("https://api.alquran.cloud/v1/")
                     .addConverterFactory(GsonConverterFactory.create())
                     .client(provideOkHttpClient())

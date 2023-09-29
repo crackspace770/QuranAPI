@@ -29,8 +29,8 @@ class DetailActivity : AppCompatActivity() {
         // Observe the LiveData for Ayah details
         viewModel.ayahDetail.observe(this) { ayahDetail ->
             // Populate UI components with data from the AyahDetail
-            binding.tvSurahEn.text = ayahDetail?.englishName
-            binding.tvRevelation.text = ayahDetail?.revelationType
+            binding.tvSurahEn.text = ayahDetail?.translation
+            binding.tvRevelation.text = ayahDetail?.revelation
             binding.tvVerseNumber.text = "${ayahDetail?.numberOfAyahs} verses"
             binding.tvSurahNameArab.text = ayahDetail?.name
 
@@ -55,7 +55,7 @@ class DetailActivity : AppCompatActivity() {
         }
 
         // Fetch Ayah detail data
-        viewModel.fetchAyahDetail(surahNum)
+        viewModel.fetchSurahDetail(surahNum)
     }
 
     companion object {

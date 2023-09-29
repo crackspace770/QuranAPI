@@ -8,18 +8,18 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.fajar.quranapi.R
 import com.fajar.quranapi.databinding.SurahItemBinding
-import com.fajar.quranapi.core.response.SurahResponse
+import com.fajar.quranapi.core.response.SurahsResponse
 
-class SurahAdapter : ListAdapter<SurahResponse, SurahAdapter.ListViewHolder>(DIFF_CALLBACK) {
+class SurahAdapter : ListAdapter<SurahsResponse, SurahAdapter.ListViewHolder>(DIFF_CALLBACK) {
 
-    var onItemClick: ((SurahResponse) -> Unit)? = null
+    var onItemClick: ((SurahsResponse) -> Unit)? = null
 
     inner class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val binding = SurahItemBinding.bind(itemView)
-        fun bind(data: SurahResponse) {
+        fun bind(data: SurahsResponse) {
             with(binding) {
-                tvSurahEN.text = data.englishName
-                tvRevelation.text = data.revelationType
+                tvSurahEN.text = data.translation
+                tvRevelation.text = data.revelation
                 tvAyah.text = data.numberOfAyahs.toString()
                 tvNameArab.text = data.name
             }
@@ -42,12 +42,12 @@ class SurahAdapter : ListAdapter<SurahResponse, SurahAdapter.ListViewHolder>(DIF
     }
 
     companion object {
-        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<SurahResponse>() {
-            override fun areItemsTheSame(oldItem: SurahResponse, newItem: SurahResponse): Boolean {
+        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<SurahsResponse>() {
+            override fun areItemsTheSame(oldItem: SurahsResponse, newItem: SurahsResponse): Boolean {
                 return oldItem == newItem
             }
 
-            override fun areContentsTheSame(oldItem: SurahResponse, newItem: SurahResponse): Boolean {
+            override fun areContentsTheSame(oldItem: SurahsResponse, newItem: SurahsResponse): Boolean {
                 return oldItem == newItem
             }
         }

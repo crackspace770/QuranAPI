@@ -5,19 +5,22 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.fajar.quranapi.core.network.ApiConfig
+import com.fajar.quranapi.core.response.DoaResponse
 import com.fajar.quranapi.core.response.ListSurahResponse
 import com.fajar.quranapi.core.response.SurahResponse
+import com.fajar.quranapi.core.response.SurahsResponse
+import com.fajar.quranapi.ui.doa.DoaViewModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class SurahViewModel: ViewModel() {
 
-    private val _listSurah = MutableLiveData<ArrayList<SurahResponse>>()
-    val listSurah: LiveData<ArrayList<SurahResponse>> = _listSurah
+    private val _listSurah = MutableLiveData<List<SurahsResponse>>()
+    val listSurah: LiveData<List<SurahsResponse>> = _listSurah
 
-    private val _namaSurah = MutableLiveData<ListSurahResponse>()
-    val namaSurah: LiveData<ListSurahResponse> = _namaSurah
+   // private val _namaSurah = MutableLiveData<ListSurahResponse>()
+  //  val namaSurah: LiveData<ListSurahResponse> = _namaSurah
 
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
@@ -33,15 +36,14 @@ class SurahViewModel: ViewModel() {
     private fun findSurah() {
         _isLoading.value = true
         val client = ApiConfig.provideApiService().getSurah()
-        client.enqueue(object : Callback<ListSurahResponse> {
+        client.enqueue(object : Callback<List<SurahsResponse>> {
             override fun onResponse(
-                call: Call<ListSurahResponse>,
-                response: Response<ListSurahResponse>
+                call: Call<List<SurahsResponse>>,
+                response: Response<List<SurahsResponse>>
             ) {
                 if (response.isSuccessful) {
-                    _listSurah.value = response.body()?.list as ArrayList<SurahResponse>?
-                    _namaSurah.value = response.body()
-                    Log.d(TAG, "onResponse: ${response.body()?.message}")
+                    _listSurah.value = response.body() ?: emptyList()
+                    Log.d(TAG, "onResponse: ${response.body()}")
                 } else {
                     Log.d(TAG, "onResponse: ${response.message()}")
                 }
@@ -49,7 +51,7 @@ class SurahViewModel: ViewModel() {
                 _isLoading.value = false
             }
 
-            override fun onFailure(call: Call<ListSurahResponse>, t: Throwable) {
+            override fun onFailure(call: Call<List<SurahsResponse>>, t: Throwable) {
                 Log.d(TAG, "onFailure: ${t.message}")
                 // Update isLoading to false when the operation is complete (even in case of failure)
                 _isLoading.value = false
