@@ -12,10 +12,9 @@ import androidx.navigation.ui.setupWithNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.fajar.quranapi.R
 import com.fajar.quranapi.databinding.ActivityMainBinding
+import com.fajar.quranapi.ui.doa.DoaFragment
 import com.fajar.quranapi.ui.quran.QuranFragment
-import com.fajar.quranapi.ui.quran.bookmark.BookmarkFragment
-import com.fajar.quranapi.ui.quran.juz.JuzFragment
-import com.fajar.quranapi.ui.quran.surah.SurahFragment
+
 
 class MainActivity:AppCompatActivity(R.layout.activity_main) {
 
@@ -39,7 +38,7 @@ class MainActivity:AppCompatActivity(R.layout.activity_main) {
         bottomNav.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.nav_home -> setFragment(QuranFragment())
-                R.id.nav_bookmark -> setFragment(BookmarkFragment())
+                R.id.nav_doa -> setFragment(DoaFragment())
                 else -> setFragment(QuranFragment())
             }
             return@setOnItemSelectedListener true

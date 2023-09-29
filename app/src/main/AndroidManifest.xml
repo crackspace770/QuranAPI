@@ -27,6 +27,10 @@
             android:exported="false"
             />
 
+        <activity android:name=".ui.doa.DoaDetailActivity"
+            android:exported="false"
+            />
+
 
 
     </application>

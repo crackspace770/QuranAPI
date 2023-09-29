@@ -4,6 +4,7 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.create
 import java.util.concurrent.TimeUnit
 
 class ApiConfig {
@@ -24,6 +25,17 @@ class ApiConfig {
                     .build()
                 return retrofit.create(ApiService::class.java)
             }
+
+            fun provideDoaApiService(): ApiService {
+                val retrofit = Retrofit.Builder()
+                    .baseUrl("https://doa-doa-api-ahmadramadhan.fly.dev/")
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .client(provideOkHttpClient())
+                    .build()
+                return retrofit.create(ApiService::class.java)
+            }
+
+
         }
     }
 

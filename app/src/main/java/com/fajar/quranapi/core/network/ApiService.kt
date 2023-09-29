@@ -1,7 +1,9 @@
 package com.fajar.quranapi.core.network
 
 import com.fajar.quranapi.core.response.AyahResponse
+import com.fajar.quranapi.core.response.DoaResponse
 import com.fajar.quranapi.core.response.JuzResponse
+import com.fajar.quranapi.core.response.ListDoaResponse
 import com.fajar.quranapi.core.response.ListSurahResponse
 import retrofit2.Call
 import retrofit2.http.GET
@@ -21,6 +23,9 @@ interface ApiService {
     fun getSurahDetail(
         @Path("surahNum") surahNum: Int,
     ): Call<AyahResponse>
+
+    @GET("api")
+    fun getDoa(): Call<List<DoaResponse>>
 
 
 }
