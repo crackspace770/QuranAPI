@@ -1,5 +1,6 @@
 package com.fajar.quranapi.ui.quran.juz
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,7 +15,6 @@ class JuzFragment : Fragment() {
 
     private var _binding: FragmentJuzBinding? = null
     private val binding get() = _binding!!
-
     private val viewModel: JuzViewModel by viewModels()
     private lateinit var juzAdapter: JuzAdapter
 
@@ -30,8 +30,9 @@ class JuzFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         juzAdapter = JuzAdapter { selectedJuzItem ->
-            // Handle item click here, e.g., navigate to the verses of the selected Juz.
-            // You can pass the selected JuzItem to the next activity/fragment for displaying its verses.
+            val moveToDetail = Intent(requireContext(), JuzDetailActivity::class.java)
+            moveToDetail.putExtra(JuzDetailActivity.EXTRA_JUZ_DETAIL, selectedJuzItem)
+            startActivity(moveToDetail)
         }
 
         binding.rvJuz.layoutManager = LinearLayoutManager(requireContext())

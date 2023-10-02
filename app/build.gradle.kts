@@ -71,4 +71,7 @@ dependencies {
     implementation ("de.hdodenhof:circleimageview:3.1.0")
 
     implementation ("com.github.kirich1409:viewbindingpropertydelegate:1.5.3")
+
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.0")
 }

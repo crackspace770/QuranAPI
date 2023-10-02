@@ -1,6 +1,7 @@
 package com.fajar.quranapi.ui.quran.juz
 
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -11,10 +12,13 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class JuzViewModel: ViewModel() {
+class JuzViewModel : ViewModel() {
 
     private val _juzList = MutableLiveData<List<JuzItem>>()
     val juzList: LiveData<List<JuzItem>> = _juzList
+
+    private val _verseList = MutableLiveData<List<JuzItem>>()
+    val verseList: LiveData<List<JuzItem>> = _verseList
 
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
@@ -50,6 +54,8 @@ class JuzViewModel: ViewModel() {
                     override fun onFailure(call: Call<JuzResponse>, t: Throwable) {
                         // Handle the network request failure here
                         _isLoading.value = false
+                        // Log the error for debugging purposes
+                        Log.e("JuzViewModel", "Failed to fetch Juz $juzNumber: ${t.message}")
                     }
                 })
         }

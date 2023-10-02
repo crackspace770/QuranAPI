@@ -16,9 +16,11 @@ class JuzAdapter(private val onItemClick: (JuzItem) -> Unit) :
     inner class ViewHolder(private val binding: JuzItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
+
         @SuppressLint("SetTextI18n")
         fun bind(juzItem: JuzItem) {
-            binding.tvJuz.text = "Juz ${juzItem.number}"
+            binding.tvJuzNumber.text = "Juz ${juzItem.number}"
+           // binding.tvJuzVerse.text = "${juzItem.numberOfAyahs} Ayah"
             binding.root.setOnClickListener {
                 onItemClick.invoke(juzItem)
             }
@@ -39,6 +41,7 @@ class JuzAdapter(private val onItemClick: (JuzItem) -> Unit) :
         return juzList.size
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun submitList(newList: List<JuzItem>) {
         juzList.clear()
         juzList.addAll(newList)

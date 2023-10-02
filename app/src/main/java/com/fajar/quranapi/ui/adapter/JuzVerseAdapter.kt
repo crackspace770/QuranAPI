@@ -1,39 +1,39 @@
 package com.fajar.quranapi.ui.adapter
 
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.fajar.quranapi.R
-import com.fajar.quranapi.core.response.AyahsItem
-import com.fajar.quranapi.databinding.VerseItemBinding
+import com.fajar.quranapi.core.response.AyahItem
+import com.fajar.quranapi.databinding.JuzItemBinding
+import com.fajar.quranapi.databinding.JuzVerseItemBinding
 
-class VerseAdapter : RecyclerView.Adapter<VerseAdapter.VerseViewHolder>() {
 
-    private var verseItems: List<AyahsItem> = emptyList()
+class JuzVerseAdapter : RecyclerView.Adapter<JuzVerseAdapter.VerseViewHolder>() {
 
-    @SuppressLint("NotifyDataSetChanged")
-    fun setVerseItems(items: List<AyahsItem>) {
+    private var verseItems: List<AyahItem> = emptyList()
+
+    fun setVerseItems(items: List<AyahItem>) {
         verseItems = items
         notifyDataSetChanged()
     }
 
     inner class VerseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val binding = VerseItemBinding.bind(itemView)
+        private val binding = JuzVerseItemBinding.bind(itemView)
 
-        fun bind(verseItem: AyahsItem) {
+        fun bind(verseItem: AyahItem) {
             with(binding) {
-                tvNumber.text = verseItem.number.inSurah.toString()
-                tvVerse.text = verseItem.arab
-                tvTerjemahan.text = verseItem.translation
+                tvJuzVerseNumber.text = verseItem.number.toString() ?: ""
+                tvJuzVerses.text = verseItem.text ?: ""
+
             }
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VerseViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val view = inflater.inflate(R.layout.verse_item, parent, false)
+        val view = inflater.inflate(R.layout.juz_verse_item, parent, false)
         return VerseViewHolder(view)
     }
 
@@ -45,4 +45,5 @@ class VerseAdapter : RecyclerView.Adapter<VerseAdapter.VerseViewHolder>() {
     override fun getItemCount(): Int {
         return verseItems.size
     }
+
 }
