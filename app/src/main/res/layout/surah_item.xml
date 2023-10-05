@@ -18,14 +18,13 @@
 
 
         <TextView
-            android:id="@+id/tvSurahEN"
-            android:layout_width="122dp"
-            android:layout_height="22dp"
+            android:id="@+id/tvSurahEn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-
             android:text="Al-Fatihah" />
 
         <TextView
@@ -36,7 +35,7 @@
             android:layout_marginTop="10dp"
             android:text="Mecca"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvSurahEN" />
+            app:layout_constraintTop_toBottomOf="@+id/tvSurahEn" />
 
         <TextView
             android:id="@+id/tvAyah"
@@ -46,7 +45,7 @@
             android:layout_marginTop="10dp"
             android:text="7 ayat"
             app:layout_constraintStart_toEndOf="@+id/tvRevelation"
-            app:layout_constraintTop_toBottomOf="@+id/tvSurahEN" />
+            app:layout_constraintTop_toBottomOf="@+id/tvSurahEn" />
 
         <TextView
             android:id="@+id/tvNameArab"

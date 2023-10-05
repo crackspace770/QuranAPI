@@ -4,11 +4,11 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.fajar.quranapi.core.network.ApiConfig
-import com.fajar.quranapi.core.response.DoaResponse
-import com.fajar.quranapi.core.response.ListSurahResponse
-import com.fajar.quranapi.core.response.SurahResponse
-import com.fajar.quranapi.core.response.SurahsResponse
+import com.fajar.quranapi.core.data.remote.network.ApiConfig
+import com.fajar.quranapi.core.data.remote.response.DoaResponse
+import com.fajar.quranapi.core.data.remote.response.ListSurahResponse
+import com.fajar.quranapi.core.data.remote.response.SurahResponse
+import com.fajar.quranapi.core.data.remote.response.SurahsResponse
 import com.fajar.quranapi.ui.doa.DoaViewModel
 import retrofit2.Call
 import retrofit2.Callback

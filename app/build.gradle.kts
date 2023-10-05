@@ -52,7 +52,8 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 
     implementation ("androidx.room:room-runtime:2.5.2")
-    //kapt ("androidx.room:room-compiler:2.5.2")
+    kapt ("androidx.room:room-compiler:2.5.2")
+    annotationProcessor ("androidx.room:room-compiler:2.5.2")
     implementation ("androidx.room:room-ktx:2.5.2")
 
     implementation ("androidx.datastore:datastore-preferences:1.0.0")
@@ -72,6 +73,17 @@ dependencies {
 
     implementation ("com.github.kirich1409:viewbindingpropertydelegate:1.5.3")
 
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.0")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.0")
+
+    implementation ("androidx.datastore:datastore-preferences:1.0.0")
+    implementation ("androidx.lifecycle:lifecycle-viewmodel:2.4.1")
+    implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1")
+    implementation ("androidx.lifecycle:lifecycle-livedata-ktx:2.4.1")
+
+    implementation ("androidx.datastore:datastore-preferences:1.0.0")
+
+    implementation ("androidx.work:work-runtime-ktx:2.5.0")
+    implementation ("androidx.preference:preference-ktx:1.1.1")
+
 }

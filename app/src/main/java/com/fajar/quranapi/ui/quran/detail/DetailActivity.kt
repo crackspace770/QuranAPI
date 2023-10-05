@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.fajar.quranapi.databinding.ActivityDetailBinding
-import com.fajar.quranapi.ui.adapter.VerseAdapter
+import com.fajar.quranapi.core.adapter.VerseAdapter
 import com.google.android.material.snackbar.Snackbar
 
 class DetailActivity : AppCompatActivity() {

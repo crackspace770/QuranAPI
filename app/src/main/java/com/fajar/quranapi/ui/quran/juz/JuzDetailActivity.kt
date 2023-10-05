@@ -5,9 +5,9 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.fajar.quranapi.core.response.JuzItem
+import com.fajar.quranapi.core.data.remote.response.JuzItem
 import com.fajar.quranapi.databinding.ActivityDetailJuzBinding
-import com.fajar.quranapi.ui.adapter.JuzVerseAdapter
+import com.fajar.quranapi.core.adapter.JuzVerseAdapter
 
 
 class JuzDetailActivity:AppCompatActivity() {

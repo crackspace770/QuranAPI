@@ -4,8 +4,8 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.fajar.quranapi.core.network.ApiConfig
-import com.fajar.quranapi.core.response.DoaResponse
+import com.fajar.quranapi.core.data.remote.network.ApiConfig
+import com.fajar.quranapi.core.data.remote.response.DoaResponse
 
 import retrofit2.Call
 import retrofit2.Callback

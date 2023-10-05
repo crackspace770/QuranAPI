@@ -1,37 +1,41 @@
 package com.fajar.quranapi.core.ui
 
 import android.app.Application
+import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.fajar.quranapi.core.di.Injection
+import com.fajar.quranapi.core.domain.usecase.QuranUseCase
 import com.fajar.quranapi.ui.quran.juz.JuzViewModel
+import com.fajar.quranapi.ui.quran.surah.SurahViewModel
+import com.fajar.quranapi.ui.quran.surah.SurahsViewModel
 
-class ViewModelFactory constructor(private val application: Application):
-ViewModelProvider.NewInstanceFactory(){
-
-    @Suppress("UNCHECKED_CAST")
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        return when{
-            modelClass.isAssignableFrom(JuzViewModel::class.java) -> {
-                JuzViewModel() as T
-            }
-            else -> throw IllegalArgumentException("Unknown ViewModel Class: ${modelClass.name}")
-        }
-
-    }
+class ViewModelFactory private constructor(private val surahUseCase: QuranUseCase) :
+    ViewModelProvider.NewInstanceFactory() {
 
     companion object {
         @Volatile
-        private var INSTANCE: ViewModelFactory? = null
+        private var instance: ViewModelFactory? = null
 
-        @JvmStatic
-        fun getInstance(application: Application): ViewModelFactory {
-            if (INSTANCE == null) {
-                synchronized(ViewModelFactory::class.java) {
-                    INSTANCE = ViewModelFactory(application)
-                }
+        fun getInstance(context: Context): ViewModelFactory =
+            instance ?: synchronized(this) {
+                instance ?: ViewModelFactory(Injection.provideSurahUseCase(context))
             }
-            return INSTANCE as ViewModelFactory
-        }
     }
 
+    @Suppress("UNCHECKED_CAST")
+    override fun <T : ViewModel> create(modelClass: Class<T>): T =
+        when {
+            modelClass.isAssignableFrom(SurahsViewModel::class.java) -> {
+                SurahsViewModel(surahUseCase) as T
+            }
+           // modelClass.isAssignableFrom(BookmarkViewModel::class.java) -> {
+          //      BookmarkViewModel(surahUseCase) as T
+          //  }
+         //   modelClass.isAssignableFrom(DetailViewModel::class.java) -> {
+        //        DetailViewModel(surahUseCase) as T
+        //    }
+
+            else -> throw Throwable("Unknown ViewModel class: " + modelClass.name)
+        }
 }

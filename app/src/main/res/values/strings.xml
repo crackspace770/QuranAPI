@@ -8,4 +8,41 @@
     <string name="title_bookmark">Bookmark</string>
     <string name="title_doa">Doa</string>
     <string name="something_wrong">Oops.. something went wrong</string>
+
+    <string-array name="prayer_id">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+    </string-array>
+
+    <string-array name="prayer_name">
+        <item>Imsak</item>
+        <item>Shubuh</item>
+        <item>Dhuhur</item>
+        <item>Ashar</item>
+        <item>Maghrib</item>
+        <item>Isha</item>
+
+    </string-array>
+
+<string-array name="prayer_time">
+    <item>04:40</item>
+    <item>04:50</item>
+    <item>11:47</item>
+    <item>15:06</item>
+    <item>17:46</item>
+    <item>19:45</item>
+</string-array>
+
+    <string name="reminder_header">Reminder</string>
+
+    <!-- Notification -->
+    <string name="pref_key_notify">key_notification</string>
+    <string name="pref_notify_name">Notification</string>
+    <string name="pref_notify_summary">Daily reminder for prayer time.</string>
+    <string name="notify_channel_name">Prayer Reminder</string>
+
 </resources>

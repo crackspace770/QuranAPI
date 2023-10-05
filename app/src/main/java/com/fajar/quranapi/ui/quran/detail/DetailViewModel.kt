@@ -3,11 +3,11 @@ package com.fajar.quranapi.ui.quran.detail
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.fajar.quranapi.core.network.ApiConfig
-import com.fajar.quranapi.core.response.AyahResponse
-import com.fajar.quranapi.core.response.AyahsItem
-import com.fajar.quranapi.core.response.AyahsResponse
-import com.fajar.quranapi.core.response.Data
+import com.fajar.quranapi.core.data.remote.network.ApiConfig
+import com.fajar.quranapi.core.data.remote.response.AyahResponse
+import com.fajar.quranapi.core.data.remote.response.AyahsItem
+import com.fajar.quranapi.core.data.remote.response.AyahsResponse
+import com.fajar.quranapi.core.data.remote.response.Data
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

@@ -5,9 +5,9 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.fajar.quranapi.core.network.ApiConfig
-import com.fajar.quranapi.core.response.JuzItem
-import com.fajar.quranapi.core.response.JuzResponse
+import com.fajar.quranapi.core.data.remote.network.ApiConfig
+import com.fajar.quranapi.core.data.remote.response.JuzItem
+import com.fajar.quranapi.core.data.remote.response.JuzResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

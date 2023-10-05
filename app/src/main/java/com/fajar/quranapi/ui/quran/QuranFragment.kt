@@ -7,7 +7,7 @@ import androidx.fragment.app.Fragment
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.fajar.quranapi.R
 import com.fajar.quranapi.databinding.FragmentQuranBinding
-import com.fajar.quranapi.ui.adapter.SectionPagerAdapter
+import com.fajar.quranapi.core.adapter.SectionPagerAdapter
 import com.google.android.material.tabs.TabLayoutMediator
 
 class QuranFragment:Fragment(R.layout.fragment_quran) {

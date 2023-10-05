@@ -10,7 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.fajar.quranapi.databinding.FragmentDoaBinding
-import com.fajar.quranapi.ui.adapter.DoaAdapter
+import com.fajar.quranapi.core.adapter.DoaAdapter
 import com.fajar.quranapi.ui.quran.detail.DetailActivity
 
 

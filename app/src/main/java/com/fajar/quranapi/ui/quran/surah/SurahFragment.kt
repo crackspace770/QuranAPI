@@ -7,9 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.fajar.quranapi.ui.adapter.SurahAdapter
+import com.fajar.quranapi.core.adapter.SurahAdapter
+import com.fajar.quranapi.core.ui.ViewModelFactory
 import com.fajar.quranapi.databinding.FragmentSurahBinding
 import com.fajar.quranapi.ui.quran.detail.DetailActivity
 
@@ -19,6 +21,7 @@ class SurahFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val mainViewModel: SurahViewModel by viewModels()
+    private lateinit var surahsViewModel: SurahsViewModel
     private val surahAdapter = SurahAdapter()
 
     override fun onCreateView(
@@ -37,6 +40,9 @@ class SurahFragment : Fragment() {
         val itemDecoration = DividerItemDecoration(requireContext(), layoutManager.orientation)
         binding.rvSurah.addItemDecoration(itemDecoration)
         binding.rvSurah.adapter = surahAdapter
+
+        val factory = ViewModelFactory.getInstance(requireActivity())
+        surahsViewModel = ViewModelProvider(this, factory)[SurahsViewModel::class.java]
 
         mainViewModel.listSurah.observe(viewLifecycleOwner) { surahList ->
             surahAdapter.submitList(surahList)

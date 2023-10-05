@@ -2,8 +2,7 @@ package com.fajar.quranapi.ui.doa
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.fajar.quranapi.core.model.Doa
-import com.fajar.quranapi.core.response.DoaResponse
+import com.fajar.quranapi.core.data.remote.response.DoaResponse
 import com.fajar.quranapi.databinding.ActivityDetailDoaBinding
 
 class DoaDetailActivity:AppCompatActivity() {
