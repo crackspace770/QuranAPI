@@ -17,7 +17,7 @@ data class DoaResponse(
 	val ayat: String? = null,
 
 	@field:SerializedName("doa")
-	val doa: String? = null,
+	val doa: String,
 
 	@field:SerializedName("artinya")
 	val artinya: String? = null,

@@ -8,6 +8,8 @@
     <string name="title_bookmark">Bookmark</string>
     <string name="title_doa">Doa</string>
     <string name="something_wrong">Oops.. something went wrong</string>
+    <string name="search">Search</string>
+
 
     <string-array name="prayer_id">
         <item>1</item>

@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
@@ -44,6 +45,24 @@ class SurahFragment : Fragment() {
         val factory = ViewModelFactory.getInstance(requireActivity())
         surahsViewModel = ViewModelProvider(this, factory)[SurahsViewModel::class.java]
 
+        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                // Retrieve the surahList from the mainViewModel
+                val surahList = mainViewModel.listSurah.value.orEmpty()
+
+                // Filter the surahList based on the search query
+                val filteredList = surahList.filter { surah ->
+                    surah.name.contains(newText.orEmpty(), ignoreCase = true)
+                }
+                surahAdapter.submitList(filteredList)
+                return true
+            }
+        })
+
         mainViewModel.listSurah.observe(viewLifecycleOwner) { surahList ->
             surahAdapter.submitList(surahList)
         }
@@ -58,7 +77,11 @@ class SurahFragment : Fragment() {
             intent.putExtra("surahNum", surah.number) // Pass the surah number
             startActivity(intent)
         }
+
+
     }
+
+
 
     private fun showLoading(isLoading: Boolean) {
         binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE

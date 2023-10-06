@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -55,6 +56,24 @@ class DoaFragment: Fragment() {
             moveToDetail.putExtra(DoaDetailActivity.EXTRA_DOA_DETAIL, doa)
             startActivity(moveToDetail)
         }
+
+        binding.searchViewDoa.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                // Retrieve the surahList from the mainViewModel
+                val surahList = viewModel.listDoa.value.orEmpty()
+
+                // Filter the surahList based on the search query
+                val filteredList = surahList.filter { surah ->
+                    surah.doa.contains(newText.orEmpty(), ignoreCase = true)
+                }
+                doaAdapter.submitList(filteredList)
+                return true
+            }
+        })
 
     }
 
