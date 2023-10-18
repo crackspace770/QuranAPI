@@ -25,8 +25,10 @@ class DetailActivity : AppCompatActivity() {
         binding.viewPager.currentItem = surahNum - 1
 
         // Initialize TabLayout with Surah names
-        TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
-            tab.text = "Surah ${position + 1}"
+        val tabLayout = binding.tabLayout
+        TabLayoutMediator(tabLayout, binding.viewPager) { tab, position ->
+            val surahName = pagerAdapter.getSurahName(position, resources)
+            tab.text = surahName
         }.attach()
     }
 
