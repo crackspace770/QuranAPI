@@ -1,65 +1,36 @@
 package com.fajar.quranapi.ui.quran.detail
 
 import android.os.Bundle
-import android.view.View
-import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.fajar.quranapi.databinding.ActivityDetailBinding
-import com.fajar.quranapi.core.adapter.VerseAdapter
-import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.tabs.TabLayoutMediator
 
 class DetailActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDetailBinding
-    private lateinit var viewModel: DetailViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Initialize ViewModel
-        viewModel = ViewModelProvider(this)[DetailViewModel::class.java]
+        // Set up ViewPager2 and TabLayout to navigate through surahs
+        val pagerAdapter = SurahPagerAdapter(this)
+        binding.viewPager.adapter = pagerAdapter
 
         // Get surahNum from intent or wherever it's coming from
         val surahNum = intent.getIntExtra("surahNum", 0)
 
-        // Observe the LiveData for Ayah details
-        viewModel.ayahDetail.observe(this) { ayahDetail ->
-            // Populate UI components with data from the AyahDetail
-            binding.tvSurahEn.text = ayahDetail?.translation
-            binding.tvRevelation.text = ayahDetail?.revelation
-            binding.tvVerseNumber.text = "${ayahDetail?.numberOfAyahs} verses"
-            binding.tvSurahNameArab.text = ayahDetail?.name
+        // Set the current item to the selected surah number
+        binding.viewPager.currentItem = surahNum - 1
 
-            // Set up RecyclerView for VerseItems
-            val verseAdapter = VerseAdapter()
-            binding.rvVerses.layoutManager = LinearLayoutManager(this)
-            binding.rvVerses.adapter = verseAdapter
-
-            // Set the verse items directly in the adapter
-            ayahDetail?.ayahs?.let { verseAdapter.setVerseItems(it) }
-        }
-
-        // Observe isLoading to show/hide ProgressBar
-        viewModel.isLoading.observe(this) { isLoading ->
-            binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
-        }
-
-        // Observe snackbarText to display error messages if needed
-        viewModel.snackbarText.observe(this) { message ->
-            // Handle error messages here, e.g., show a Snackbar
-            Snackbar.make(binding.root, message, Snackbar.LENGTH_SHORT).show()
-        }
-
-        // Fetch Ayah detail data
-        viewModel.fetchSurahDetail(surahNum)
+        // Initialize TabLayout with Surah names
+        TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
+            tab.text = "Surah ${position + 1}"
+        }.attach()
     }
 
     companion object {
         const val EXTRA_AYAH = "extra_ayah"
-
     }
 }

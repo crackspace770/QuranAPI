@@ -83,7 +83,7 @@ dependencies {
 
     implementation ("androidx.datastore:datastore-preferences:1.0.0")
 
-    implementation ("androidx.work:work-runtime-ktx:2.5.0")
+    implementation ("androidx.work:work-runtime-ktx:2.8.1")
     implementation ("androidx.preference:preference-ktx:1.1.1")
 
 }

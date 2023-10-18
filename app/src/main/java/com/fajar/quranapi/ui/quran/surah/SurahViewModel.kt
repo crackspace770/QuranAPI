@@ -19,9 +19,6 @@ class SurahViewModel: ViewModel() {
     private val _listSurah = MutableLiveData<List<SurahsResponse>>()
     val listSurah: LiveData<List<SurahsResponse>> = _listSurah
 
-   // private val _namaSurah = MutableLiveData<ListSurahResponse>()
-  //  val namaSurah: LiveData<ListSurahResponse> = _namaSurah
-
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
 
