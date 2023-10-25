@@ -14,6 +14,7 @@ import com.fajar.quranapi.R
 import com.fajar.quranapi.core.adapter.PrayerAdapter
 import com.fajar.quranapi.core.domain.model.Prayer
 import com.fajar.quranapi.databinding.ActivityPrayerBinding
+import com.fajar.quranapi.ui.compass.CompassActivity
 import com.fajar.quranapi.ui.main.MainActivity
 import com.fajar.quranapi.ui.setting.NotificationWorker
 import com.fajar.quranapi.ui.setting.SettingActivity
@@ -40,6 +41,10 @@ class PrayerActivity:AppCompatActivity() {
 
         binding.btnSetting.setOnClickListener {
             startActivity(Intent(this, SettingActivity::class.java))
+        }
+
+        binding.btnCompas.setOnClickListener {
+            startActivity(Intent(this, CompassActivity::class.java))
         }
 
         rvPrayer= findViewById(R.id.rvPrayer)

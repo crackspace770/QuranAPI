@@ -12,59 +12,52 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.fajar.quranapi.R
+import com.fajar.quranapi.core.data.local.entity.AyahItem
 import com.fajar.quranapi.core.data.local.entity.VerseEntity
 import com.fajar.quranapi.core.data.remote.response.AyahsItem
-import com.fajar.quranapi.core.preference.SharedPreferencesHelper
 import com.fajar.quranapi.core.ui.ViewModelFactories
 import com.fajar.quranapi.databinding.VerseItemBinding
 import com.fajar.quranapi.ui.quran.bookmark.BookmarkViewModel
-import com.fajar.quranapi.ui.quran.detail.DetailViewModel
-import com.fajar.quranapi.ui.quran.detail.DetailViewModelFactory
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import java.io.IOException
 
-class VerseAdapter(private val viewModel: DetailViewModel) : RecyclerView.Adapter<VerseAdapter.VerseViewHolder>() {
+class BookmarkAdapter : RecyclerView.Adapter<BookmarkAdapter.VerseViewHolder>() {
 
-    private var verseItems: List<AyahsItem> = emptyList()
+    private var verseItems: List<VerseEntity> = emptyList()
+    private var isPlaying: Boolean = false
     private var mediaPlayer: MediaPlayer? = null
-    private var highlightedPosition: Int = -1
+    private lateinit var detailViewModel: BookmarkViewModel
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setHighlightedPosition(position: Int) {
-        highlightedPosition = position
-        notifyDataSetChanged()
-    }
-
-    @SuppressLint("NotifyDataSetChanged")
-    fun setVerseItems(items: List<AyahsItem>) {
+    fun setVerseItems(items: List<VerseEntity>) {
         verseItems = items
         notifyDataSetChanged()
     }
 
-
+    private fun obtainViewModel(activity: AppCompatActivity): BookmarkViewModel {
+        val factory = ViewModelFactories.getInstance(activity.application)
+        return ViewModelProvider(activity, factory)[BookmarkViewModel::class.java]
+    }
 
     inner class VerseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val binding = VerseItemBinding.bind(itemView)
 
 
 
-        fun bind(verseItem: AyahsItem,  position: Int) {
+        fun bind(verseItem: VerseEntity) {
             with(binding) {
-                tvNumber.text = verseItem.number.inSurah.toString()
+                tvNumber.text = verseItem.number
                 tvVerse.text = verseItem.arab
                 tvTerjemahan.text = verseItem.translation
 
                 btnPlayAudio.setOnClickListener {
-                    val audioUrl = verseItem.audio.alafasy
+                    val audioUrl = verseItem.audio
                     playAudio(audioUrl)
 
                 }
-                if (position == highlightedPosition) {
-                    // Highlight the verse (apply your highlight logic here)
-                    itemView.setBackgroundColor(ContextCompat.getColor(itemView.context, R.color.blue_bg))
-                } else {
-                    // Reset the verse highlight (remove background color or reset text color)
-                    itemView.setBackgroundColor(Color.TRANSPARENT)
-                }
+
 
                 itemView.setOnClickListener {
                     showVerseAlertDialog(verseItem)
@@ -75,7 +68,7 @@ class VerseAdapter(private val viewModel: DetailViewModel) : RecyclerView.Adapte
         }
 
         // Function to show the alert dialog
-        private fun showVerseAlertDialog(verseItem: AyahsItem) {
+        private fun showVerseAlertDialog(verseItem: VerseEntity) {
             val builder = AlertDialog.Builder(itemView.context)
             builder.setTitle("Tandai")
             builder.setMessage("Tandai sebagai terakhir baca?")
@@ -83,7 +76,13 @@ class VerseAdapter(private val viewModel: DetailViewModel) : RecyclerView.Adapte
             // Add "Yes" button action
             builder.setPositiveButton("Yes") { _, _ ->
                 // Handle "Yes" button click here
-                viewModel.bookmarkVerse(verseItem)
+                val removedItem = verseItem
+                // Remove the item from your list
+                verseItems = verseItems.filter { it != removedItem }
+                // Notify the adapter about the change
+                notifyDataSetChanged()
+                // Remove the item from the database
+                detailViewModel.deleteBookmark(removedItem.number)
 
             }
 
@@ -97,6 +96,7 @@ class VerseAdapter(private val viewModel: DetailViewModel) : RecyclerView.Adapte
         }
 
     }
+
 
 
 
@@ -116,7 +116,6 @@ class VerseAdapter(private val viewModel: DetailViewModel) : RecyclerView.Adapte
             mediaPlayer?.setDataSource(audioUrl)
             mediaPlayer?.prepare()
             mediaPlayer?.start()
-
         } catch (e: IOException) {
             e.printStackTrace()
             // Handle any exceptions or errors that may occur during playback
@@ -124,21 +123,21 @@ class VerseAdapter(private val viewModel: DetailViewModel) : RecyclerView.Adapte
     }
 
 
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VerseViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val view = inflater.inflate(R.layout.verse_item, parent, false)
         return VerseViewHolder(view)
-
-
     }
 
     override fun onBindViewHolder(holder: VerseViewHolder, position: Int) {
         val verseItem = verseItems[position]
-        holder.bind(verseItem, position)
-
+        holder.bind(verseItem)
     }
 
     override fun getItemCount(): Int {
         return verseItems.size
     }
+
+
 }

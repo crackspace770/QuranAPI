@@ -56,6 +56,8 @@ dependencies {
     annotationProcessor ("androidx.room:room-compiler:2.5.2")
     implementation ("androidx.room:room-ktx:2.5.2")
 
+    // android lifecycle
+    implementation ("androidx.lifecycle:lifecycle-extensions:2.2.0")
     implementation ("androidx.datastore:datastore-preferences:1.0.0")
     implementation ("androidx.lifecycle:lifecycle-viewmodel:2.6.1")
     implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1")
@@ -85,5 +87,8 @@ dependencies {
 
     implementation ("androidx.work:work-runtime-ktx:2.8.1")
     implementation ("androidx.preference:preference-ktx:1.1.1")
+
+    implementation ("com.google.android.gms:play-services-location:20.0.0")
+
 
 }

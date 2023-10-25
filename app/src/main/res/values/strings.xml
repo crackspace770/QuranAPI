@@ -10,6 +10,8 @@
     <string name="something_wrong">Oops.. something went wrong</string>
     <string name="search">Search</string>
 
+    <string name="add_successfully">Sukses menambahkan Bookmark</string>
+    <string name="delete_successfully">Sukses menghapus Bookmark</string>
 
     <string-array name="prayer_id">
         <item>1</item>

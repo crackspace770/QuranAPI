@@ -1,18 +1,24 @@
 package com.fajar.quranapi.ui.quran.detail
 
+import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.fajar.quranapi.core.data.local.entity.VerseEntity
+import com.fajar.quranapi.core.data.local.room.VerseRepository
 import com.fajar.quranapi.core.data.remote.network.ApiConfig
-import com.fajar.quranapi.core.data.remote.response.AyahResponse
+
 import com.fajar.quranapi.core.data.remote.response.AyahsItem
 import com.fajar.quranapi.core.data.remote.response.AyahsResponse
-import com.fajar.quranapi.core.data.remote.response.Data
+
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class DetailViewModel : ViewModel() {
+class DetailViewModel(application: Application) : ViewModel() {
+
+    private val verseRepository: VerseRepository = VerseRepository(application)
 
     private val _ayahDetail = MutableLiveData<AyahsResponse?>()
     val ayahDetail: LiveData<AyahsResponse?> = _ayahDetail
@@ -22,6 +28,7 @@ class DetailViewModel : ViewModel() {
 
     private val _snackbarText = MutableLiveData<String>()
     val snackbarText: LiveData<String> = _snackbarText
+
 
     // Function to fetch the detail of a specific surah
     fun fetchSurahDetail(surahNum: Int) {
@@ -49,4 +56,18 @@ class DetailViewModel : ViewModel() {
             }
         })
     }
+
+    fun bookmarkVerse(verseItem: AyahsItem) {
+        // Here, you can insert the `verseItem` into the database as a bookmarked verse
+        // You should implement the logic to insert it into your Room database
+        val verseEntity = VerseEntity(
+            number = verseItem.number.inSurah.toString(),
+            translation = verseItem.translation,
+            audio = verseItem.audio.alafasy,
+            arab = verseItem.arab
+        )
+        verseRepository.insert(verseEntity)
+    }
+
+
 }

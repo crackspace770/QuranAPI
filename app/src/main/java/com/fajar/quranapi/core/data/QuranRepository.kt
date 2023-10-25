@@ -1,8 +1,6 @@
 package com.fajar.quranapi.core.data
 
 import com.fajar.quranapi.core.data.local.LocalDataSource
-import com.fajar.quranapi.core.data.local.entity.AyahEntity
-import com.fajar.quranapi.core.data.local.entity.SurahEntity
 import com.fajar.quranapi.core.data.remote.RemoteDataSource
 import com.fajar.quranapi.core.data.remote.network.ApiResponse
 import com.fajar.quranapi.core.data.remote.response.SurahResponse

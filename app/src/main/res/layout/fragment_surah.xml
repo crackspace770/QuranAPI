@@ -13,6 +13,7 @@
         android:background="@drawable/searchview_background"
         android:iconifiedByDefault="false"
         android:queryBackground="@drawable/ic_nav_search"
+        android:queryHint="Cari Surah"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

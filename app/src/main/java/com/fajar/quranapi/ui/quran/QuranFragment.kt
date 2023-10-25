@@ -14,23 +14,6 @@ class QuranFragment:Fragment(R.layout.fragment_quran) {
 
     private val binding: FragmentQuranBinding by viewBinding()
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-        super.onViewCreated(view, savedInstanceState)
-        binding.apply {
-            val sectionsPagerAdapter = SectionPagerAdapter(this@QuranFragment)
-            viewPager.adapter = sectionsPagerAdapter
-            TabLayoutMediator(tabs, viewPager) { tab, position ->
-                tab.text = resources.getString(TAB_TITLES[position])
-            }.attach()
-        }
-    }
-    companion object {
-        @StringRes
-        private val TAB_TITLES = intArrayOf(
-            R.string.title_surah,
-            R.string.title_juz
-        )
-    }
 
 }
