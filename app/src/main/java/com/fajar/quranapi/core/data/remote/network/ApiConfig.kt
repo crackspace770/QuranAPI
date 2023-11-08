@@ -44,6 +44,23 @@ class ApiConfig {
                 return retrofit.create(ApiService::class.java)
             }
 
+            fun provideSholatService():ApiService{
+                val retrofit = Retrofit.Builder()
+                    .baseUrl("https://api.banghasan.com/sholat/format/json/jadwal/kota/")
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .client(provideOkHttpClient())
+                    .build()
+                return retrofit.create(ApiService::class.java)
+            }
+
+            fun provideShalatService():ApiService{
+                val retrofit = Retrofit.Builder()
+                    .baseUrl("https://api.myquran.com/v1/sholat/")
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .client(provideOkHttpClient())
+                    .build()
+                return retrofit.create(ApiService::class.java)
+            }
 
         }
     }

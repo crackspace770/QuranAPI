@@ -1,13 +1,14 @@
 package com.fajar.quranapi.core.data.remote.network
 
-import com.fajar.quranapi.core.data.remote.response.AyahResponse
 import com.fajar.quranapi.core.data.remote.response.AyahsResponse
 import com.fajar.quranapi.core.data.remote.response.DoaResponse
 import com.fajar.quranapi.core.data.remote.response.JuzResponse
-import com.fajar.quranapi.core.data.remote.response.ListDoaResponse
 import com.fajar.quranapi.core.data.remote.response.ListSurahResponse
+import com.fajar.quranapi.core.data.remote.response.ScheduleResponse
+import com.fajar.quranapi.core.data.remote.response.SholatResponse
 import com.fajar.quranapi.core.data.remote.response.SurahsResponse
 import retrofit2.Call
+import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
 
@@ -36,6 +37,22 @@ interface ApiService {
 
     @GET("api")
     fun getDoa(): Call<List<DoaResponse>>
+
+    @GET("kota/{cityId}/tanggal/{date}")
+    fun getSholatSchedule(
+        @Path("cityId") cityId: Int,
+        @Path("date") date: String
+    ): Call<SholatResponse>
+
+    @GET("jadwal/{id_kota}/{tahun}/{bulan}/{tanggal}")
+    suspend fun getScheduleByDay(
+        @Path("id_kota") idKota: String,
+        @Path("tahun") tahun: String,
+        @Path("bulan") bulan: String,
+        @Path("tanggal") tanggal: String
+    ): Response<ScheduleResponse>
+
+
 
 
 }

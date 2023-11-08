@@ -34,7 +34,7 @@ class MainActivity:AppCompatActivity(R.layout.activity_main) {
             when (position) {
                 0 -> tab.text = "Surah"
                 1 -> tab.text = "Doa"
-                2 -> tab.text = "Bookmark"
+                2 -> tab.text = "Prayer"
             }
         }.attach()
     }

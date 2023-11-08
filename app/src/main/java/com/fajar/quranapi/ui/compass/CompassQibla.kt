@@ -10,7 +10,8 @@ import android.location.Location
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
-import com.fajar.quranapi.ui.compass.LocationUtils.checkLocationPermission
+import com.fajar.quranapi.ui.utils.LocationUtils
+import com.fajar.quranapi.ui.utils.LocationUtils.checkLocationPermission
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 
@@ -25,7 +26,7 @@ class CompassQibla {
         private var currentDegree = 0f
         private var currentDegreeNeedle = 0f
         private val model: CompassQiblaViewModel =
-            ViewModelProvider(activity).get(CompassQiblaViewModel::class.java)
+            ViewModelProvider(activity)[CompassQiblaViewModel::class.java]
 
         fun build() {
             fusedLocationClient = LocationServices.getFusedLocationProviderClient(activity)
