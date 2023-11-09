@@ -33,8 +33,8 @@ class MainActivity:AppCompatActivity(R.layout.activity_main) {
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
             when (position) {
                 0 -> tab.text = "Surah"
-                1 -> tab.text = "Doa"
-                2 -> tab.text = "Prayer"
+                1 -> tab.text = "Bookmark"
+               // 2 -> tab.text = "Prayer"
             }
         }.attach()
     }

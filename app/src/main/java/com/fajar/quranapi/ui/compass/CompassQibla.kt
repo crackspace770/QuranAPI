@@ -15,6 +15,7 @@ import com.fajar.quranapi.ui.utils.LocationUtils.checkLocationPermission
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 
+
 class CompassQibla {
 
     class Builder(private val activity: AppCompatActivity) : SensorEventListener {

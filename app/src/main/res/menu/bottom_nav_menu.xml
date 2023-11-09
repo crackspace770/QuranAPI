@@ -2,13 +2,16 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/nav_home"
-        android:icon="@drawable/baseline_home_24"
-        android:title="@string/title_quran" />
+        android:id="@+id/nav_shalat"
+        android:icon="@drawable/baseline_brightness_4_24"
+        android:title="@string/title_shalat" />
+
 
     <item
-        android:id="@+id/nav_doa"
-        android:icon="@drawable/baseline_book_24"
-        android:title="@string/title_doa" />
+        android:id="@+id/nav_compass"
+        android:icon="@drawable/baseline_compass_calibration_24"
+        android:title="@string/title_compass"
+        />
+
 
 </menu>

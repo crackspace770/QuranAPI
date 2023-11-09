@@ -10,15 +10,15 @@ import com.fajar.quranapi.ui.quran.surah.SurahFragment
 
 class SectionPagerAdapter(activity: AppCompatActivity) : FragmentStateAdapter(activity) {
     override fun getItemCount(): Int {
-        return 3
+        return 2
     }
 
     override fun createFragment(position: Int): Fragment {
         var fragment: Fragment? = null
         when (position) {
             0 -> fragment = SurahFragment()
-            1 -> fragment = DoaFragment()
-            2 -> fragment = PrayerFragment()
+            1 -> fragment = BookmarkFragment()
+         //   2 -> fragment = PrayerFragment()
         }
         return fragment as Fragment
     }

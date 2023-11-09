@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.fajar.quranapi.core.data.remote.network.ApiConfig
 import com.fajar.quranapi.core.data.remote.network.ApiService
+import com.fajar.quranapi.core.data.remote.response.ScheduleResponse
 import com.fajar.quranapi.core.data.remote.response.SholatResponse
 import kotlinx.coroutines.launch
 import retrofit2.Call
@@ -25,64 +26,45 @@ import java.util.Locale
 import java.util.Timer
 import java.util.TimerTask
 
-class PrayerViewModel(private val context: Context) : ViewModel() {
+class PrayerViewModel() : ViewModel() {
 
     private val apiService: ApiService = ApiConfig.provideSholatService()
-    private val _shalatData = MutableLiveData<SholatResponse?>()
-    val shalatData: MutableLiveData<SholatResponse?> = _shalatData
 
-    private val _isLoading = MutableLiveData<Boolean>()
-    val isLoading: LiveData<Boolean> = _isLoading
+    private val _dailySchedule = MutableLiveData<ScheduleResponse.Data.Jadwal?>()
+    val dailySchedule: LiveData<ScheduleResponse.Data.Jadwal?> = _dailySchedule
 
-    private val _locationAddress = MutableLiveData<Address>()
-    val locationAddress get() = _locationAddress
+    private val _tomorrowSchedule = MutableLiveData<ScheduleResponse.Data.Jadwal?>()
+    val tomorrowSchedule: LiveData<ScheduleResponse.Data.Jadwal?> = _tomorrowSchedule
 
-
-
-    @RequiresApi(Build.VERSION_CODES.O)
-    fun getCurrentDate(): String {
-        val currentDate = LocalDate.now()
-        return currentDate.toString() // The default format is ISO-8601 (e.g., "yyyy-MM-dd")
-    }
-
-    private fun getLocationAddress(context: Context, location: Location){
+    fun fetchDailySchedule(cityId: String, year: String, month: String, day: String) {
         viewModelScope.launch {
-            Geocoder(context, Locale.getDefault()).apply {
-                getFromLocation(location.latitude, location.longitude, 1)?.first()
-                    .let { address ->
-                        _locationAddress.value = address
-                    }
+            try {
+                val response = apiService.getScheduleByDay(cityId, year, month, day)
+                if (response.isSuccessful) {
+                    _dailySchedule.value = response.body()?.data?.jadwal
+                } else {
+                    // Handle error
+                }
+            } catch (ex: Exception) {
+                // Handle exception
             }
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
-    fun getShalatTimesForCurrentDate(context: Context, cityId: Int, location: Location) {
-        val currentDate = getCurrentDate()
-
-        // Get location address (if needed)
-        getLocationAddress(context, location)
-
-        val call = apiService.getSholatSchedule(cityId, currentDate)
-        call.enqueue(object : Callback<SholatResponse> {
-            override fun onResponse(call: Call<SholatResponse>, response: Response<SholatResponse>) {
+    fun fetchTomorrowSchedule(cityId: String, year: String, month: String, day: String) {
+        viewModelScope.launch {
+            try {
+                val response = apiService.getScheduleByDay(cityId, year, month, day)
                 if (response.isSuccessful) {
-                    val shalatResponse = response.body()
-                    shalatData.value = shalatResponse
-                    Log.d(TAG, "onResponse: ${response.body()}")
+                    _tomorrowSchedule.value = response.body()?.data?.jadwal
                 } else {
-                    Log.d(TAG, "onResponse: ${response.message()}")
+                    // Handle error
                 }
-                _isLoading.value = false
+            } catch (ex: Exception) {
+                // Handle exception
             }
-
-            override fun onFailure(call: Call<SholatResponse>, t: Throwable) {
-                // Update isLoading to false when the operation is complete (even in case of failure)
-                _isLoading.value = false
-            }
-        })
+        }
     }
-
     companion object {
         private const val TAG = "PrayerViewModel"
     }

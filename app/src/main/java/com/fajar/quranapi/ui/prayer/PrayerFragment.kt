@@ -26,6 +26,7 @@ import com.fajar.quranapi.R
 import com.fajar.quranapi.core.data.remote.network.ApiService
 import com.fajar.quranapi.core.data.remote.network.RetrofitClient
 import com.fajar.quranapi.databinding.FragmentPrayerBinding
+import com.fajar.quranapi.ui.compass.CompassActivity
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import kotlinx.coroutines.delay
@@ -44,6 +45,8 @@ class PrayerFragment: Fragment(R.layout.fragment_prayer) {
     private lateinit var mFusedLocationClient: FusedLocationProviderClient
     private val permissionId = 2
     private var comingSoon = ""
+
+    private lateinit var viewModel: PrayerViewModel
 
     private val format = SimpleDateFormat("HH:mm", Locale.US)
     private val dateFormat = "dd-MM-yyyy HH:mm:ss"
@@ -64,6 +67,10 @@ class PrayerFragment: Fragment(R.layout.fragment_prayer) {
         getDailySchedule()
         getCurrentLocation()
         getLocation(requireContext())
+
+        binding.btnCompass.setOnClickListener {
+            startActivity(Intent(context, CompassActivity::class.java))
+        }
 
     }
 
@@ -237,14 +244,14 @@ class PrayerFragment: Fragment(R.layout.fragment_prayer) {
                     day,
                     month
                 )
-                if (response.isSuccessful()) {
+                if (response.isSuccessful) {
                     response.body()?.data?.jadwal?.apply {
-                        binding.tvJamImsak.text = imsak
-                        binding.tvJamShubuh.text = subuh
-                        binding.tvJamDzuhur.text = dzuhur
-                        binding.tvJamAshar.text = ashar
-                        binding.tvJamMaghrib.text = maghrib
-                        binding.tvJamIsya.text = isya
+                        binding.tvJamImsak.text = "$imsak WIB"
+                        binding.tvJamShubuh.text = "$subuh WIB"
+                        binding.tvJamDzuhur.text = "$dzuhur WIB"
+                        binding.tvJamAshar.text = "$ashar WIB"
+                        binding.tvJamMaghrib.text = "$maghrib WIB"
+                        binding.tvJamIsya.text = "$isya WIB"
 
                         binding.tvJam.text = "Imsak - $imsak"
                     }
@@ -300,6 +307,7 @@ class PrayerFragment: Fragment(R.layout.fragment_prayer) {
         )
     }
 
+    @Deprecated("Deprecated in Java")
     @SuppressLint("MissingSuperCall")
     override fun onRequestPermissionsResult(
         requestCode: Int,

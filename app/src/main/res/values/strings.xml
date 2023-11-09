@@ -7,6 +7,8 @@
     <string name="title_juz">Juz</string>
     <string name="title_bookmark">Bookmark</string>
     <string name="title_doa">Doa</string>
+    <string name="title_shalat">Shalat</string>
+    <string name="title_compass">Compass</string>
     <string name="something_wrong">Oops.. something went wrong</string>
     <string name="search">Search</string>
 
@@ -49,6 +51,7 @@
     <string name="pref_notify_summary">Daily reminder for prayer time.</string>
     <string name="notify_channel_name">Prayer Reminder</string>
 
+    <string name="app_desc">Aplikasi yang dibuat untuk membaca Al-Quran, doa pendek, dan melihat waktu shalat</string>
 
     <string-array name="surah_name">
 

@@ -20,7 +20,7 @@
         android:theme="@style/Theme.QuranAPI"
         tools:targetApi="31">
         <activity
-            android:name=".ui.prayer.PrayerActivity"
+            android:name=".ui.intro.IntroActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -49,6 +49,14 @@
             />
 
         <activity android:name=".ui.compass.CompassActivity"
+            android:exported="false"
+            />
+
+        <activity android:name=".ui.prayer.PrayerActivity"
+            android:exported="false"
+            />
+
+        <activity android:name=".ui.doa.DoaActivity"
             android:exported="false"
             />
 
