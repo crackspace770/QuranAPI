@@ -1,4 +1,4 @@
-package com.fajar.quranapi.ui.compass
+package com.fajar.quranapi.ui.shalat.compass
 
 data class QiblaDirection (
 

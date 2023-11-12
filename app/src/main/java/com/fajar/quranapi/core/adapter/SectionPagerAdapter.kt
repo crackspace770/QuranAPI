@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.fajar.quranapi.ui.doa.DoaFragment
-import com.fajar.quranapi.ui.prayer.PrayerFragment
+import com.fajar.quranapi.ui.shalat.prayer.PrayerFragment
 import com.fajar.quranapi.ui.quran.bookmark.BookmarkFragment
 import com.fajar.quranapi.ui.quran.surah.SurahFragment
 

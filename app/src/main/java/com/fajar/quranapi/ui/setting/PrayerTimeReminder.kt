@@ -8,7 +8,7 @@ import android.content.Context
 import android.content.Intent
 import android.widget.Toast
 import com.fajar.quranapi.core.domain.model.Prayer
-import com.fajar.quranapi.ui.prayer.PrayerActivity
+import com.fajar.quranapi.ui.shalat.prayer.PrayerActivity
 import com.fajar.quranapi.ui.utils.CHANNEL_ID
 import com.fajar.quranapi.ui.utils.ID_REPEATING
 import java.text.SimpleDateFormat

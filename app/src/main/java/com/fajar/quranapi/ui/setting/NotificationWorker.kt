@@ -10,7 +10,7 @@ import androidx.core.app.NotificationCompat
 import androidx.work.Worker
 import androidx.work.WorkerParameters
 import com.fajar.quranapi.R
-import com.fajar.quranapi.ui.prayer.PrayerActivity
+import com.fajar.quranapi.ui.shalat.prayer.PrayerActivity
 import com.fajar.quranapi.ui.utils.NOTIFICATION_CHANNEL_ID
 
 class NotificationWorker(context: Context, params: WorkerParameters) : Worker(context, params) {

@@ -1,4 +1,4 @@
-package com.fajar.quranapi.ui.compass
+package com.fajar.quranapi.ui.shalat.compass
 
 import android.annotation.SuppressLint
 import android.hardware.Sensor

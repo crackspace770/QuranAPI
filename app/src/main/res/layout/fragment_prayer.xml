@@ -58,11 +58,12 @@
                 android:layout_width="186dp"
                 android:layout_height="21dp"
                 android:layout_marginStart="112dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="12dp"
                 android:layout_marginEnd="112dp"
                 android:drawableStart="@drawable/pin"
                 android:drawablePadding="8dp"
                 android:textColor="@color/white"
+                android:text="location"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvJam" />
@@ -73,7 +74,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="8dp"
                 android:text="08:00"
                 android:textColor="@color/white"
@@ -96,16 +97,6 @@
                 app:layout_constraintEnd_toStartOf="@+id/tvJam"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvTanggal" />
-
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/btnCompass"
-                android:layout_width="34dp"
-                android:layout_height="37dp"
-                android:layout_marginStart="14dp"
-                android:layout_marginTop="16dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/baseline_compass_calibration_white" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -244,6 +235,17 @@
         android:text="Imsak"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView" />
+
+    <Button
+        android:id="@+id/btnQibla"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="24dp"
+        android:text="Qibla"
+        app:icon="@drawable/ic_qibla"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
 

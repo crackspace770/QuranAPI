@@ -1,4 +1,4 @@
-package com.fajar.quranapi.ui.prayer
+package com.fajar.quranapi.ui.shalat.prayer
 
 
 import android.annotation.SuppressLint
@@ -9,14 +9,10 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.fajar.quranapi.R
 import com.fajar.quranapi.databinding.ActivityPrayerBinding
-import com.fajar.quranapi.ui.compass.QiblaFragment
-import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
 class PrayerActivity:AppCompatActivity(R.layout.activity_prayer) {
@@ -41,7 +37,7 @@ class PrayerActivity:AppCompatActivity(R.layout.activity_prayer) {
         bottomNav.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.nav_shalat -> setFragment(PrayerFragment())
-                R.id.nav_compass -> setFragment(QiblaFragment())
+                R.id.nav_monthly-> setFragment(MonthlyScheduleFragment())
                 else -> setFragment(PrayerFragment())
             }
             return@setOnItemSelectedListener true

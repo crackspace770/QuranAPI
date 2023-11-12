@@ -1,4 +1,4 @@
-package com.fajar.quranapi.ui.prayer
+package com.fajar.quranapi.ui.shalat.prayer
 
 import android.Manifest
 import android.annotation.SuppressLint
@@ -26,7 +26,7 @@ import com.fajar.quranapi.R
 import com.fajar.quranapi.core.data.remote.network.ApiService
 import com.fajar.quranapi.core.data.remote.network.RetrofitClient
 import com.fajar.quranapi.databinding.FragmentPrayerBinding
-import com.fajar.quranapi.ui.compass.CompassActivity
+import com.fajar.quranapi.ui.shalat.compass.CompassActivity
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import kotlinx.coroutines.delay
@@ -68,7 +68,7 @@ class PrayerFragment: Fragment(R.layout.fragment_prayer) {
         getCurrentLocation()
         getLocation(requireContext())
 
-        binding.btnCompass.setOnClickListener {
+        binding.btnQibla.setOnClickListener {
             startActivity(Intent(context, CompassActivity::class.java))
         }
 
@@ -220,7 +220,7 @@ class PrayerFragment: Fragment(R.layout.fragment_prayer) {
                     initShalatCountDown(endTime)
 
                 } else {
-                 //   Toast.makeText(
+               //     Toast.makeText(
                  //       ContentProviderCompat.requireContext(),
                 //        response.errorBody().toString(),
                 //        Toast.LENGTH_LONG
@@ -239,7 +239,7 @@ class PrayerFragment: Fragment(R.layout.fragment_prayer) {
         lifecycleScope.launch {
             try {
                 val response = apiInterface.getScheduleByDay(
-                    "1219",
+                    "1415",
                     "2023",
                     day,
                     month

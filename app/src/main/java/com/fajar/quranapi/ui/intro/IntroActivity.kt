@@ -6,8 +6,8 @@ import androidx.appcompat.app.AppCompatActivity
 import com.fajar.quranapi.databinding.ActivityIntroBinding
 import com.fajar.quranapi.ui.doa.DoaActivity
 import com.fajar.quranapi.ui.main.MainActivity
-import com.fajar.quranapi.ui.prayer.PrayerActivity
-import com.fajar.quranapi.ui.prayer.PrayerFragment
+import com.fajar.quranapi.ui.shalat.prayer.PrayerActivity
+import com.fajar.quranapi.ui.shalat.prayer.PrayerFragment
 
 class IntroActivity:AppCompatActivity() {
 

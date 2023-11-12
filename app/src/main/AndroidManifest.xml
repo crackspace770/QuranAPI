@@ -48,11 +48,11 @@
             android:exported="false"
             />
 
-        <activity android:name=".ui.compass.CompassActivity"
+        <activity android:name=".ui.shalat.compass.CompassActivity"
             android:exported="false"
             />
 
-        <activity android:name=".ui.prayer.PrayerActivity"
+        <activity android:name=".ui.shalat.prayer.PrayerActivity"
             android:exported="false"
             />
 

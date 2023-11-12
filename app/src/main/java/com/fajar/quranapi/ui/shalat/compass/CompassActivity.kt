@@ -1,4 +1,4 @@
-package com.fajar.quranapi.ui.compass
+package com.fajar.quranapi.ui.shalat.compass
 
 import android.os.Bundle
 import android.view.animation.Animation

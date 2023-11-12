@@ -4,6 +4,7 @@ import com.fajar.quranapi.core.data.remote.response.AyahsResponse
 import com.fajar.quranapi.core.data.remote.response.DoaResponse
 import com.fajar.quranapi.core.data.remote.response.JuzResponse
 import com.fajar.quranapi.core.data.remote.response.ListSurahResponse
+import com.fajar.quranapi.core.data.remote.response.MonthlyScheduleResponse
 import com.fajar.quranapi.core.data.remote.response.ScheduleResponse
 import com.fajar.quranapi.core.data.remote.response.SholatResponse
 import com.fajar.quranapi.core.data.remote.response.SurahsResponse
@@ -38,12 +39,6 @@ interface ApiService {
     @GET("api")
     fun getDoa(): Call<List<DoaResponse>>
 
-    @GET("kota/{cityId}/tanggal/{date}")
-    fun getSholatSchedule(
-        @Path("cityId") cityId: Int,
-        @Path("date") date: String
-    ): Call<SholatResponse>
-
     @GET("jadwal/{id_kota}/{tahun}/{bulan}/{tanggal}")
     suspend fun getScheduleByDay(
         @Path("id_kota") idKota: String,
@@ -52,7 +47,12 @@ interface ApiService {
         @Path("tanggal") tanggal: String
     ): Response<ScheduleResponse>
 
-
+    @GET("jadwal/{id_kota}/{tahun}/{bulan}")
+    suspend fun getScheduleMonthly(
+        @Path("id_kota") idKota: String,
+        @Path("tahun") tahun: String,
+        @Path("bulan") bulan: String
+    ): Response<MonthlyScheduleResponse>
 
 
 }

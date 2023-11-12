@@ -1,4 +1,4 @@
-package com.fajar.quranapi.ui.prayer
+package com.fajar.quranapi.ui.shalat.prayer
 
 import android.content.Context
 import android.location.Address

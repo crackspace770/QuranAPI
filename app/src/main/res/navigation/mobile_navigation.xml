@@ -7,16 +7,16 @@
 
     <fragment
         android:id="@+id/nav_shalat"
-        android:name="com.fajar.quranapi.ui.prayer.PrayerFragment"
+        android:name="com.fajar.quranapi.ui.shalat.prayer.PrayerFragment"
         android:label="fragment_shalat"
         tools:layout="@layout/fragment_prayer">
     </fragment>
 
     <fragment
-        android:id="@+id/nav_compass"
-        android:name="com.fajar.quranapi.ui.compass.QiblaFragment"
-        android:label="fragment_qibla"
-        tools:layout="@layout/fragment_qibla">
+        android:id="@+id/nav_monthly"
+        android:name="com.fajar.quranapi.ui.shalat.prayer.MonthlyScheduleFragment"
+        android:label="fragment_prayer_monthly"
+        tools:layout="@layout/fragment_prayer_monthly">
     </fragment>
 
 </navigation>
