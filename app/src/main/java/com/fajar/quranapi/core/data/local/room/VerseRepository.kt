@@ -3,6 +3,8 @@ package com.fajar.quranapi.core.data.local.room
 import android.app.Application
 import androidx.lifecycle.LiveData
 import com.fajar.quranapi.core.data.local.entity.VerseEntity
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 class VerseRepository(application: Application) {
 
@@ -20,12 +22,20 @@ class VerseRepository(application: Application) {
 
     fun getBookmarkedVerses() = quranDao.getAllBookmark()
 
-    fun insert(favorite: VerseEntity) = quranDao.insert(favorite)
+    suspend fun insert(verse: VerseEntity) {
+        withContext(Dispatchers.IO) {
+            quranDao.insert(verse)
+        }
+    }
 
     fun isVerseBookmarked(number: String): LiveData<Boolean> = quranDao.isVerseBookmarked(number)
 
     fun check(number: String) = quranDao.check(number)
 
-    fun delete(number: String) = quranDao.delete(number)
+    suspend fun delete(number: String) {
+        withContext(Dispatchers.IO) {
+            quranDao.delete(number)
+        }
+    }
 
 }

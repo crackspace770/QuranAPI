@@ -22,8 +22,6 @@ class SurahDetailFragment : Fragment() {
     private lateinit var binding: FragmentSurahDetailBinding
     private lateinit var viewModel: DetailViewModel
 
-
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -78,12 +76,8 @@ class SurahDetailFragment : Fragment() {
             })
 
         }
-
         // Fetch Ayah detail data
         viewModel.fetchSurahDetail(surahNum)
-
-
-
     }
 
 

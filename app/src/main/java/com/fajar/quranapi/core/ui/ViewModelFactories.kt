@@ -4,7 +4,7 @@ import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.fajar.quranapi.ui.quran.bookmark.BookmarkViewModel
-import com.fajar.quranapi.ui.quran.detail.DetailViewModel
+
 
 class ViewModelFactories constructor(private val application: Application) :
     ViewModelProvider.NewInstanceFactory() {

@@ -38,15 +38,14 @@ class BookmarkFragment: Fragment() {
         return binding.root
     }
 
-    private fun obtainViewModel(activity: AppCompatActivity): BookmarkViewModel {
-        val factory = ViewModelFactories.getInstance(activity.application)
-        return ViewModelProvider(activity, factory)[BookmarkViewModel::class.java]
+    private fun obtainViewModel(fragment: Fragment): BookmarkViewModel {
+        val factory = ViewModelFactories.getInstance(fragment.requireActivity().application)
+        return ViewModelProvider(fragment, factory)[BookmarkViewModel::class.java]
     }
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = obtainViewModel(context as AppCompatActivity)
+        viewModel = obtainViewModel(this)
 
         // Observe the LiveData for bookmarked verses and populate the adapter
         viewModel.getBookmarkedVerses().observe(viewLifecycleOwner) { bookmarkedVerses ->

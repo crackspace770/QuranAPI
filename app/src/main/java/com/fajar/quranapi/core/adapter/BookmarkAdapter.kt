@@ -2,33 +2,24 @@ package com.fajar.quranapi.core.adapter
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog
-import android.graphics.Color
 import android.media.MediaPlayer
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.fajar.quranapi.R
-import com.fajar.quranapi.core.data.local.entity.AyahItem
 import com.fajar.quranapi.core.data.local.entity.VerseEntity
-import com.fajar.quranapi.core.data.remote.response.AyahsItem
-import com.fajar.quranapi.core.ui.ViewModelFactories
 import com.fajar.quranapi.databinding.VerseItemBinding
 import com.fajar.quranapi.ui.quran.bookmark.BookmarkViewModel
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import com.fajar.quranapi.ui.quran.detail.DetailViewModel
 import java.io.IOException
 
-class BookmarkAdapter : RecyclerView.Adapter<BookmarkAdapter.VerseViewHolder>() {
+class BookmarkAdapter(): RecyclerView.Adapter<BookmarkAdapter.BookmarkViewHolder>() {
 
     private var verseItems: List<VerseEntity> = emptyList()
     private var isPlaying: Boolean = false
     private var mediaPlayer: MediaPlayer? = null
-    private lateinit var detailViewModel: BookmarkViewModel
+    private lateinit var viewModel: BookmarkViewModel
 
     @SuppressLint("NotifyDataSetChanged")
     fun setVerseItems(items: List<VerseEntity>) {
@@ -36,15 +27,9 @@ class BookmarkAdapter : RecyclerView.Adapter<BookmarkAdapter.VerseViewHolder>() 
         notifyDataSetChanged()
     }
 
-    private fun obtainViewModel(activity: AppCompatActivity): BookmarkViewModel {
-        val factory = ViewModelFactories.getInstance(activity.application)
-        return ViewModelProvider(activity, factory)[BookmarkViewModel::class.java]
-    }
 
-    inner class VerseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class BookmarkViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val binding = VerseItemBinding.bind(itemView)
-
-
 
         fun bind(verseItem: VerseEntity) {
             with(binding) {
@@ -68,21 +53,21 @@ class BookmarkAdapter : RecyclerView.Adapter<BookmarkAdapter.VerseViewHolder>() 
         }
 
         // Function to show the alert dialog
+        @SuppressLint("NotifyDataSetChanged")
         private fun showVerseAlertDialog(verseItem: VerseEntity) {
             val builder = AlertDialog.Builder(itemView.context)
             builder.setTitle("Tandai")
-            builder.setMessage("Tandai sebagai terakhir baca?")
+            builder.setMessage("Hapus Bookmark?")
 
             // Add "Yes" button action
             builder.setPositiveButton("Yes") { _, _ ->
                 // Handle "Yes" button click here
-                val removedItem = verseItem
                 // Remove the item from your list
-                verseItems = verseItems.filter { it != removedItem }
+                verseItems = verseItems.filter { it != verseItem }
                 // Notify the adapter about the change
                 notifyDataSetChanged()
                 // Remove the item from the database
-                detailViewModel.deleteBookmark(removedItem.number)
+                viewModel.deleteBookmark(verseItem.number)
 
             }
 
@@ -124,13 +109,13 @@ class BookmarkAdapter : RecyclerView.Adapter<BookmarkAdapter.VerseViewHolder>() 
 
 
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VerseViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BookmarkViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val view = inflater.inflate(R.layout.verse_item, parent, false)
-        return VerseViewHolder(view)
+        return BookmarkViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: VerseViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: BookmarkViewHolder, position: Int) {
         val verseItem = verseItems[position]
         holder.bind(verseItem)
     }

@@ -11,6 +11,7 @@ import com.fajar.quranapi.core.data.remote.network.ApiConfig
 
 import com.fajar.quranapi.core.data.remote.response.AyahsItem
 import com.fajar.quranapi.core.data.remote.response.AyahsResponse
+import kotlinx.coroutines.launch
 
 import retrofit2.Call
 import retrofit2.Callback
@@ -58,15 +59,15 @@ class DetailViewModel(application: Application) : ViewModel() {
     }
 
     fun bookmarkVerse(verseItem: AyahsItem) {
-        // Here, you can insert the `verseItem` into the database as a bookmarked verse
-        // You should implement the logic to insert it into your Room database
-        val verseEntity = VerseEntity(
-            number = verseItem.number.inSurah.toString(),
-            translation = verseItem.translation,
-            audio = verseItem.audio.alafasy,
-            arab = verseItem.arab
-        )
-        verseRepository.insert(verseEntity)
+        viewModelScope.launch {
+            val verseEntity = VerseEntity(
+                number = verseItem.number.inSurah.toString(),
+                translation = verseItem.translation,
+                audio = verseItem.audio.alafasy,
+                arab = verseItem.arab
+            )
+            verseRepository.insert(verseEntity)
+        }
     }
 
 

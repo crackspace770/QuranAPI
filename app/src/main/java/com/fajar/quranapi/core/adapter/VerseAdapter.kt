@@ -2,24 +2,18 @@ package com.fajar.quranapi.core.adapter
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog
+import android.content.Context
 import android.graphics.Color
 import android.media.MediaPlayer
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.fajar.quranapi.R
-import com.fajar.quranapi.core.data.local.entity.VerseEntity
 import com.fajar.quranapi.core.data.remote.response.AyahsItem
-import com.fajar.quranapi.core.preference.SharedPreferencesHelper
-import com.fajar.quranapi.core.ui.ViewModelFactories
 import com.fajar.quranapi.databinding.VerseItemBinding
-import com.fajar.quranapi.ui.quran.bookmark.BookmarkViewModel
 import com.fajar.quranapi.ui.quran.detail.DetailViewModel
-import com.fajar.quranapi.ui.quran.detail.DetailViewModelFactory
 import java.io.IOException
 
 class VerseAdapter(private val viewModel: DetailViewModel) : RecyclerView.Adapter<VerseAdapter.VerseViewHolder>() {
@@ -45,9 +39,7 @@ class VerseAdapter(private val viewModel: DetailViewModel) : RecyclerView.Adapte
     inner class VerseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val binding = VerseItemBinding.bind(itemView)
 
-
-
-        fun bind(verseItem: AyahsItem,  position: Int) {
+        fun bind(verseItem: AyahsItem,  position: Int, context: Context) {
             with(binding) {
                 tvNumber.text = verseItem.number.inSurah.toString()
                 tvVerse.text = verseItem.arab
@@ -67,7 +59,7 @@ class VerseAdapter(private val viewModel: DetailViewModel) : RecyclerView.Adapte
                 }
 
                 itemView.setOnClickListener {
-                    showVerseAlertDialog(verseItem)
+                    showVerseAlertDialog(context, verseItem)
                 }
 
             }
@@ -75,8 +67,8 @@ class VerseAdapter(private val viewModel: DetailViewModel) : RecyclerView.Adapte
         }
 
         // Function to show the alert dialog
-        private fun showVerseAlertDialog(verseItem: AyahsItem) {
-            val builder = AlertDialog.Builder(itemView.context)
+        private fun showVerseAlertDialog(context: Context, verseItem: AyahsItem) {
+            val builder = AlertDialog.Builder(context)
             builder.setTitle("Tandai")
             builder.setMessage("Tandai sebagai terakhir baca?")
 
@@ -84,7 +76,6 @@ class VerseAdapter(private val viewModel: DetailViewModel) : RecyclerView.Adapte
             builder.setPositiveButton("Yes") { _, _ ->
                 // Handle "Yes" button click here
                 viewModel.bookmarkVerse(verseItem)
-
             }
 
             // Add "No" button action
@@ -128,14 +119,11 @@ class VerseAdapter(private val viewModel: DetailViewModel) : RecyclerView.Adapte
         val inflater = LayoutInflater.from(parent.context)
         val view = inflater.inflate(R.layout.verse_item, parent, false)
         return VerseViewHolder(view)
-
-
     }
 
     override fun onBindViewHolder(holder: VerseViewHolder, position: Int) {
         val verseItem = verseItems[position]
-        holder.bind(verseItem, position)
-
+        holder.bind(verseItem, position, holder.itemView.context)
     }
 
     override fun getItemCount(): Int {
