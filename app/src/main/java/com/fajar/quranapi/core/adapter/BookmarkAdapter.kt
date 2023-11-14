@@ -1,20 +1,25 @@
 package com.fajar.quranapi.core.adapter
 
 import android.annotation.SuppressLint
-import android.app.AlertDialog
+import android.content.Context
+import android.content.Intent
 import android.media.MediaPlayer
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.fajar.quranapi.R
 import com.fajar.quranapi.core.data.local.entity.VerseEntity
 import com.fajar.quranapi.databinding.VerseItemBinding
+import com.fajar.quranapi.ui.main.MainActivity
+import com.fajar.quranapi.ui.quran.bookmark.BookmarkFragmentDirections
 import com.fajar.quranapi.ui.quran.bookmark.BookmarkViewModel
-import com.fajar.quranapi.ui.quran.detail.DetailViewModel
 import java.io.IOException
 
-class BookmarkAdapter(): RecyclerView.Adapter<BookmarkAdapter.BookmarkViewHolder>() {
+class BookmarkAdapter(private val context: Context): RecyclerView.Adapter<BookmarkAdapter.BookmarkViewHolder>() {
 
     private var verseItems: List<VerseEntity> = emptyList()
     private var isPlaying: Boolean = false
@@ -26,7 +31,6 @@ class BookmarkAdapter(): RecyclerView.Adapter<BookmarkAdapter.BookmarkViewHolder
         verseItems = items
         notifyDataSetChanged()
     }
-
 
     inner class BookmarkViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val binding = VerseItemBinding.bind(itemView)
@@ -40,52 +44,28 @@ class BookmarkAdapter(): RecyclerView.Adapter<BookmarkAdapter.BookmarkViewHolder
                 btnPlayAudio.setOnClickListener {
                     val audioUrl = verseItem.audio
                     playAudio(audioUrl)
-
                 }
+            }
 
-
-                itemView.setOnClickListener {
-                    showVerseAlertDialog(verseItem)
-                }
-
+            itemView.setOnClickListener {
+                navigateToSurah(verseItem, itemView)
             }
 
         }
-
-        // Function to show the alert dialog
-        @SuppressLint("NotifyDataSetChanged")
-        private fun showVerseAlertDialog(verseItem: VerseEntity) {
-            val builder = AlertDialog.Builder(itemView.context)
-            builder.setTitle("Tandai")
-            builder.setMessage("Hapus Bookmark?")
-
-            // Add "Yes" button action
-            builder.setPositiveButton("Yes") { _, _ ->
-                // Handle "Yes" button click here
-                // Remove the item from your list
-                verseItems = verseItems.filter { it != verseItem }
-                // Notify the adapter about the change
-                notifyDataSetChanged()
-                // Remove the item from the database
-                viewModel.deleteBookmark(verseItem.number)
-
-            }
-
-            // Add "No" button action
-            builder.setNegativeButton("No") { _, _ ->
-                // Handle "No" button click here or simply dismiss the dialog
-            }
-
-            val dialog = builder.create()
-            dialog.show()
-        }
-
     }
 
+    private fun navigateToSurah(verseItem: VerseEntity, view: View) {
+        val surahNum = verseItem.number
 
+        // TODO: Check if surahNum is valid and perform navigation
+        // For now, you can print it for debugging purposes
+        println("Clicked on Surah: $surahNum")
 
-
-
+        // TODO: Perform navigation using Safe Args
+        // Replace 'yourActionId' with the actual action ID in your nav_graph.xml
+        val action = BookmarkFragmentDirections.actionBookmarkFragmentToSurahDetailFragment(surahNum)
+        view.findNavController().navigate(action)
+    }
 
     private fun playAudio(audioUrl: String) {
         if (mediaPlayer == null) {
@@ -106,8 +86,6 @@ class BookmarkAdapter(): RecyclerView.Adapter<BookmarkAdapter.BookmarkViewHolder
             // Handle any exceptions or errors that may occur during playback
         }
     }
-
-
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BookmarkViewHolder {
         val inflater = LayoutInflater.from(parent.context)

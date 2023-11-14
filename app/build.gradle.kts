@@ -3,7 +3,7 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id ("kotlin-parcelize")
     id ("kotlin-kapt")
-
+    id("androidx.navigation.safeargs.kotlin")
 }
 
 android {
@@ -12,7 +12,7 @@ android {
 
     defaultConfig {
         applicationId = "com.fajar.quranapi"
-        minSdk = 24
+        minSdk = 26
         targetSdk = 33
         versionCode = 1
         versionName = "1.0"
@@ -68,8 +68,11 @@ dependencies {
     implementation ("com.squareup.retrofit2:retrofit:2.9.0")
     implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation ("com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.3")
-    implementation ("androidx.navigation:navigation-fragment-ktx:2.6.0")
-    implementation ("androidx.navigation:navigation-ui-ktx:2.6.0")
+
+    implementation ("androidx.navigation:navigation-fragment-ktx:2.5.3")
+    implementation ("androidx.navigation:navigation-ui-ktx:2.5.3")
+ //   implementation ("androidx.navigation:navigation-safe-args-gradle-plugin:2.5.3")
+
     implementation ("com.github.bumptech.glide:glide:4.13.1")
     implementation ("de.hdodenhof:circleimageview:3.1.0")
 

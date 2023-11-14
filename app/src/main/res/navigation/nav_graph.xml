@@ -1,0 +1,31 @@
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/bookmarkFragment">
+
+    <!-- Other fragments -->
+
+    <fragment
+        android:id="@+id/bookmarkFragment"
+        android:name="com.fajar.quranapi.ui.quran.bookmark.BookmarkFragment"
+        tools:layout="@layout/fragment_bookmark">
+
+        <action
+            android:id="@+id/actionBookmarkFragmentToSurahDetailFragment"
+            app:destination="@id/surahDetailFragment">
+            <argument
+                android:name="surahNum"
+                app:argType="string" />
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/surahDetailFragment"
+        android:name="com.fajar.quranapi.ui.quran.detail.SurahDetailFragment"
+        tools:layout="@layout/fragment_surah_detail">
+
+        <!-- Other actions -->
+    </fragment>
+
+</navigation>
